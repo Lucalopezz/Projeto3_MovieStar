@@ -28,10 +28,28 @@
 
     if($name && $lastname && $email && $password){
         //verificar se as senhas batem
+
         if($password === $confirmpassword){
             //verificar se o email é unico no sistema
             if($userDAO->findByEmail($email) === false){
-                //echo"nenhum usuario com esse email";
+                //echo"nenhum usuario com esse email";]
+
+                $user = new User();
+
+                //token e senhas
+                $userToken = $user->generateToken();
+                $finalpassword = $user->generatePassword($password);
+
+                $user->name = $name;
+                $user->lastname = $lastname;
+                $user->email = $email;
+                $user->password = $finalpassword;
+                $user->token = $userToken;
+
+                $auth = True;
+
+                $userDAO->create($user, $auth);
+                
             }else{
                 $message->setMessage("E-mail já cadastrado!", "error", "back");
             }
