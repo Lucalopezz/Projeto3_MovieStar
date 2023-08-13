@@ -154,7 +154,8 @@
     margin: 30px auto;
 }
 #login-container form div,
-#register-container form div {
+#register-container form div,
+#edit-container div {
 
     margin-bottom: 15px;
 }
