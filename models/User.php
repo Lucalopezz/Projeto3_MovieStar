@@ -19,6 +19,9 @@ class User{
     public function generatePassword($password){
         return password_hash($password, PASSWORD_DEFAULT); //cria uma string e embaralha
     }
+    public function imageGenerateName(){
+        return bin2hex(random_bytes(60)) . "jpg";
+    }
 }
 
 interface UserDAOInterface{

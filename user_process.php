@@ -1,4 +1,82 @@
 <?php 
+  require_once("models/User.php");
+  require_once("models/Message.php");
+  require_once("dao/UserDAO.php");
+  require_once("globals.php");
+  require_once("db.php");
+
+  $message = new Message($BASE_URL);
+  $userDAO = new UserDAO($conn, $BASE_URL);
 
 
-?>
+  $type = filter_input(INPUT_POST, "type");
+
+  //Atualizar o usuário
+  if($type === "update"){
+    //print_r($_POST); exit;
+
+    //Resgata dados do usuário
+    $userData = $userDAO->verifyToken();
+
+    //print_r($userData);exit;
+    //dados do post
+    $name = filter_input(INPUT_POST, "name");
+    $lastname = filter_input(INPUT_POST, "lastname");
+    $email = filter_input(INPUT_POST, "email");
+    $bio = filter_input(INPUT_POST, "bio");
+
+    //novo usuario
+    $user = new User();
+
+    //preenchendo os dados com o userData, pois se fosse o user teria de atualizar o objeto inteiro
+    $userData->name = $name;
+    $userData->lastname = $lastname;
+    $userData->email = $email;
+    $userData->bio = $bio;
+
+
+     // Upload da imagem
+     if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
+      
+        $image = $_FILES["image"];
+        $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+       $jpgArray = ["image/jpg", "image/jpeg"];
+       
+
+  
+        // Checagem de tipo de imagem
+        if(in_array($image["type"], $imageTypes)) {
+  
+          // Checar se jpg
+          if(in_array($image['type'], $jpgArray)) {
+  
+            $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+  
+          // Imagem é png
+          } else {
+  
+            $imageFile = imagecreatefrompng($image["tmp_name"]);
+  
+          }
+  
+          $imageName = $user->imageGenerateName();
+  
+          imagejpeg($imageFile, "./img/users/" . $imageName, 100);
+  
+          $userData->image = $imageName;
+  
+        } else {
+  
+          $message->setMessage("Tipo inválido de imagem, insira png ou jpg!", "error", "back");
+  
+        }
+  
+      }
+  
+      $userDAO->update($userData);
+
+  }elseif($type === "changepassword"){
+
+  }else{
+    $message->setMessage("Informações Inválidas", "error", "index.php");
+  }

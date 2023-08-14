@@ -155,8 +155,8 @@
 }
 #login-container form div,
 #register-container form div,
-#edit-container div {
-
+#edit-container div,
+#edit-container-password div {
     margin-bottom: 15px;
 }
 .card-btn {
@@ -170,4 +170,43 @@
     background-color: transparent;
     color: #f5c518;
     border: 2px solid #f5c518;
+}
+
+#profile-image-container,
+.profile-image-container {
+  width: 150px;
+  height: 150px;
+  border: 6px solid #F5C518;
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  margin: 15px auto;
+}
+
+.profile-image-container {
+  width: 70px;
+  height: 70px;
+}
+
+.page-description {
+  color: #999;
+}
+
+#bio {
+  max-width: 400px;
+}
+
+.form-control.disabled {
+  background-color: #BBB;
+}
+
+#change-password-container {
+  margin-top: 30px;
+}
+
+.edit-profile-page .card-btn,
+#add-movie-container .card-btn,
+#review-form .card-btn,
+#edit-movie-form .card-btn {
+  width: auto;
 }
