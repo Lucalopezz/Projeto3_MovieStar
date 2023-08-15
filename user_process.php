@@ -76,6 +76,27 @@
       $userDAO->update($userData);
 
   }elseif($type === "changepassword"){
+    $password = filter_input(INPUT_POST, "password");
+    $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
+
+    $userData =$userDAO->verifyToken();
+    $id = $userData->id ;
+
+    if($password == $confirmpassword){
+       //novo usuario
+      $user = new User();
+      $finalpassword = $user->generatePassword($password);
+
+      $user->password = $finalpassword;
+      $user->id = $id;
+
+      $userDAO->changePassword($user);
+
+    }else{
+      $message->setMessage("As senhas não batem!", "error", "back");
+
+    }
+
 
   }else{
     $message->setMessage("Informações Inválidas", "error", "index.php");

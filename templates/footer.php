@@ -1,3 +1,7 @@
+<?php 
+    require_once("globals.php");
+?>
+
 <footer id="footer">
         <div id="social-container">
             <ul>
@@ -21,7 +25,7 @@
                     <a href="#">Adiconar Crítica</a>
                 </li>
                 <li>
-                    <a href="#">Entra / Registrar</a>
+                    <a href="<?= $BASE_URL?>">Entra / Registrar</a>
                 </li>
             </ul>
         </div>
