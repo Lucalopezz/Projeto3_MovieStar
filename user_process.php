@@ -40,7 +40,7 @@
       
         $image = $_FILES["image"];
         $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
-       $jpgArray = ["image/jpg", "image/jpeg"];
+        $jpgArray = ["image/jpg", "image/jpeg"];
        
 
   
