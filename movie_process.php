@@ -9,6 +9,7 @@ require_once("db.php");
 
 $message = new Message($BASE_URL);
 $userDAO = new UserDAO($conn, $BASE_URL);
+$movieDAO = new MovieDAO($conn, $BASE_URL);
 
 
 $type = filter_input(INPUT_POST, "type"); // tipo do form
@@ -29,12 +30,13 @@ if($type == 'create'){
     $movie = new Movie();
 
     //Validação minima de dados
-    if(!empty($title) && !empty($description)){
+    if(!empty($title) && !empty($description)  && !empty($category)){
         $movie->title = $title;
         $movie->description = $description;
         $movie->trailer = $trailer;
         $movie->category = $category;
         $movie->length = $length;
+        $movie->users_id = $userData->id;
 
         //upload de imagem de filme
 

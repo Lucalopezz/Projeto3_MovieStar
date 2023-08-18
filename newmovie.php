@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label for="category">Categoria:</label>
-                    <select name="categoty" id="category" class="form-control">
+                    <select name="category" id="category" class="form-control">
                         <option value="">Selecione</option>
                         <option value="Ação">Ação</option>
                         <option value="Drama">Drama</option>
