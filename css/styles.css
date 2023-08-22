@@ -163,7 +163,8 @@
     color: #f5c518;
     border-color: #f5c518;
 }
-#add-movie-container .card-btn{
+#add-movie-container .card-btn,
+#review-form-id .card-btn{
     width: auto;
 }
 
@@ -243,7 +244,8 @@
 #register-container form div,
 #edit-container div,
 #edit-container-password div,
-.new-movie-container .form-group {
+.new-movie-container .form-group,
+#review-form-id div {
     margin-bottom: 15px;
 }
 .card-btn {
