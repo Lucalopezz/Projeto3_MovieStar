@@ -43,7 +43,7 @@
                         <option value="Comédia">Comédia</option>
                         <option value="Terror">Terror</option>
                         <option value="Ficção">Ficção</option>
-                        <option value="Ficção">Romance</option>
+                        <option value="Romance">Romance</option>
                         
                     </select>
                 </div>

@@ -6,7 +6,9 @@
 
     //pegar o id do filme
 
+
     $id = filter_input(INPUT_GET, "id");
+    $userData;
     $movie;
 
     $movieDAO = new MovieDAO($conn, $BASE_URL);
@@ -28,16 +30,18 @@
         $movie->image = "movie_cover.jpg";
     }
 
+
     // Checando se o filme é do usuário
     $userOwnsMovie = false;
 
     if(!empty($userData)) {
-        if($userData->id === $movie->users_id) {
-          $userOwnsMovie = true;
+        if( $userData->id === $movie->users_id) {
+            $userOwnsMovie = true;
         }
       }
 
     //resgatar as reviews do filme
+    $alreadyReviewed = false;
 
 
 ?>
@@ -54,16 +58,26 @@
                 <span><i class="fas fa-star"></i>9</span>
                
             </p>
+            <?php if(isset($movie->trailer)): ?>
+                
+                <iframe src="https://www.youtube.com/embed/jZYhCcvZYmc?si=bw0Lybo-g0Xms_tZ" width="560" height="315" ></iframe>
+                <p><?=$movie->description?></p>
+
+            <?php else: ?>
             <iframe src="<?=$movie->trailer?>" width="560" height="315" frameboarder="0" allow="accelerometer; autoplay; clipboard-write; encryted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p><?=$movie->description?></p>
+            <?php endif; ?>
+
+
             
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" id="image-movie">
             <div class="movie-image-container" style="background-image: url(<?=$BASE_URL?>img/movies/<?=$movie->image?>);"></div>       
         </div>
         <div class="offset-md-1 col-md-10" id="reviews-container">
             <h3 id="reviews-title">Avaliações</h3>
             <!-- Verifica se habilita a review para o usuario logado -->
+            <?php if(!empty($userData) && !$userOwnsMovie && !$alreadyReviewed): ?>
             <div class="col-md-12" id="form-container">
                 <h4>Envie sua avaliação:</h4>
                 <p class="page-description">Preencha o form com a nota e comentário sobre o filme</p>
@@ -94,6 +108,8 @@
 
                 </form>
             </div>
+            <?php endif; ?>
+
             <div class="col-md-12 review">
                 <div class="row">
                     <div class="col-md-1">
@@ -112,6 +128,7 @@
         </div>
     </div>
 </div>
+
 
 <?php 
     require_once("templates/footer.php");

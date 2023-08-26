@@ -245,7 +245,8 @@
 #edit-container div,
 #edit-container-password div,
 .new-movie-container .form-group,
-#review-form-id div {
+#review-form-id div,
+#edit-movie-form div {
     margin-bottom: 15px;
 }
 .card-btn {
@@ -325,7 +326,7 @@
     margin: 0 auto;
     padding-top: 7px;
   }
-  /* ========================= Movie =================== */
+/* ========================= Movie =================== */
 .movie-container {
     text-align: center;
 }
@@ -379,9 +380,19 @@
 .comment-title {
     color: #999;
 }
+#image-movie .movie-image-container {
+    height: 100%;
+    border: 3px solid #f5c518;
+    border-radius: 3px;
+
+}
+.trailer-container .movie-image-container{
+    width: 560px;
+    height: 315px;
+}
 
 
-/* Dashboard */
+/*========================== Dashboard =============================== */
 #add-movie-container {
     text-align: right;
     margin-bottom: 1rem;
@@ -438,4 +449,15 @@
     background-color: transparent;
     color: #dc3545;
     text-decoration: none;
+}
+/*========================== Edit Movie =============================== */
+
+#edit-movie-form .form-group{
+    width: 70%;
+}
+#image-edit .movie-image-container {
+    margin-top: 38%; 
+    border: 6px solid #f5c518;
+    border-radius: 3px;
+
 }
