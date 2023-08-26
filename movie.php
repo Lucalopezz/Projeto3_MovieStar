@@ -28,15 +28,14 @@
         $movie->image = "movie_cover.jpg";
     }
 
-    //checar se o usuario é dono do filme
-
+    // Checando se o filme é do usuário
     $userOwnsMovie = false;
-    if(empty($userData)){
-        if($userData->id === $movie->users_id){
-            $userOwnsMovie = true;
 
+    if(!empty($userData)) {
+        if($userData->id === $movie->users_id) {
+          $userOwnsMovie = true;
         }
-    }
+      }
 
     //resgatar as reviews do filme
 
@@ -47,11 +46,13 @@
     <div class="row">
         <div class="offset-md-1 col-md-6 movie-container">
             <h1 class="page-title"><?=$movie->title?></h1>
-            <p class="movie-datails">
-                <span>Duração: <?=$movie->length?></span>
-                <span class="pipe"><?=$movie->category?></span>
+            <p class="movie-details">
+                <span>Duração: <?= $movie->length ?></span>
                 <span class="pipe"></span>
-                <span><i class="fas fa-star"   ></i>9</span>
+                <span><?= $movie->category ?></span>
+                <span class="pipe"></span>
+                <span><i class="fas fa-star"></i>9</span>
+               
             </p>
             <iframe src="<?=$movie->trailer?>" width="560" height="315" frameboarder="0" allow="accelerometer; autoplay; clipboard-write; encryted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p><?=$movie->description?></p>
@@ -66,7 +67,7 @@
             <div class="col-md-12" id="form-container">
                 <h4>Envie sua avaliação:</h4>
                 <p class="page-description">Preencha o form com a nota e comentário sobre o filme</p>
-                <form action="<?=$BASE_URL?>review_process.php" method="post" id="review-form-id">
+                <form action="<?=$BASE_URL?>review_process.php" method="post" id="review-form-container">
                     <input type="hidden" name="type" value="create" >
                     <input type="hidden" name="movies_id" value="<?=$movie->id?>" >
                     <div class="form-group">
