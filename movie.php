@@ -125,7 +125,7 @@ $alreadyReviewed = false;
                             style="background-image: url('img/users/user.png"></div>
                     </div>
                     <div class="col-md-9">
-                        <h4 class="author-name"><a href="<?=$BASE_URL ?>profile.php?id=<?=$userData->id ?>">Lucas</a></h4>
+                        <h4 class="author-name"><a href="">Lucas</a></h4>
                         <p><i class="fas fa-star"></i>9</p>
                     </div>
                     <div class="col-md-12">
