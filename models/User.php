@@ -1,5 +1,6 @@
-<?php 
-class User{
+<?php
+class User
+{
     public $id;
     public $name;
     public $lastname;
@@ -9,22 +10,27 @@ class User{
     public $bio;
     public $token;
 
-    public function getFullName($user){
+    public function getFullName($user)
+    {
         return $user->name . " " . $user->lastname;
     }
 
-    public function generateToken(){
+    public function generateToken()
+    {
         return bin2hex(random_bytes(50)); //cria uma string e embaralha
     }
-    public function generatePassword($password){
+    public function generatePassword($password)
+    {
         return password_hash($password, PASSWORD_DEFAULT); //cria uma string e embaralha
     }
-    public function imageGenerateName(){
+    public function imageGenerateName()
+    {
         return bin2hex(random_bytes(60)) . ".jpg";
     }
 }
 
-interface UserDAOInterface{
+interface UserDAOInterface
+{
     public function buildUser($data);
     public function create(User $user, $authUser = false);
     public function update(User $user, $redirect = true);
