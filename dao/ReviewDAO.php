@@ -1,11 +1,12 @@
-<?php 
+<?php
 
 require_once("models/Review.php");
 require_once("models/Message.php");
 
 require_once("dao/UserDAO.php");
 
-class ReviewDAO implements ReviewDAOInterface{
+class ReviewDAO implements ReviewDAOInterface
+{
     private $conn;
     private $url;
 
@@ -18,7 +19,8 @@ class ReviewDAO implements ReviewDAOInterface{
         $this->url = $url;
         $this->message = new Message($url);
     }
-    public function buildReview($data){
+    public function buildReview($data)
+    {
 
 
         $reviewObject = new Review();
@@ -32,16 +34,34 @@ class ReviewDAO implements ReviewDAOInterface{
 
 
     }
-    public function create(Review $review){
+    public function create(Review $review)
+    {
+        $stmt = $this->conn->prepare("INSERT INTO reviews (
+            rating, review, movies_id, users_id
+          ) VALUES (
+            :rating, :review, :movies_id, :users_id
+          )");
+
+        $stmt->bindParam(":rating", $review->rating);
+        $stmt->bindParam(":review", $review->review);
+        $stmt->bindParam(":movies_id", $review->movies_id);
+        $stmt->bindParam(":users_id", $review->users_id);
+
+        $stmt->execute();
+
+        // Redireciona e apresenta mensagem de sucesso
+        $this->message->setMessage("Crítica feita com sucesso!", "success", "index.php");
+    }
+    public function getMoviesReview($id)
+    {
 
     }
-    public function getMoviesReview($id){
+    public function hasAlreadyReviewed($id, $userId)
+    {
 
     }
-    public function hasAlreadyReviewed($id, $userId){
-
-    }
-    public function getRatings($id){
+    public function getRatings($id)
+    {
 
     }
 }
