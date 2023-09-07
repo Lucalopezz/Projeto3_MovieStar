@@ -50,15 +50,46 @@ class ReviewDAO implements ReviewDAOInterface
         $stmt->execute();
 
         // Redireciona e apresenta mensagem de sucesso
-        $this->message->setMessage("Crítica feita com sucesso!", "success", "index.php");
+        $this->message->setMessage("Crítica feita com sucesso!", "success", "back");
     }
     public function getMoviesReview($id)
     {
+        $reviews = [];
+        $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id = :movies_id");
+
+        $stmt->bindParam(":movies_id", $id);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            $reviewsData = $stmt->fetchAll();
+            $userDAO = new UserDAO($this->conn, $this->url);
+            foreach($reviewsData as $review){
+
+                $reviewObject = $this->buildReview($review);
+
+                //Chamar dados do usuario
+                $user = $userDAO->findById($reviewObject->users_id);
+
+                $reviewObject->user = $user;
+
+                $reviews[] = $reviewObject ;
+            }
+
+        } 
+        return $reviews;
+
 
     }
     public function hasAlreadyReviewed($id, $userId)
     {
-
+        $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id = :movies_id AND users_id = :users_id");
+        $stmt->bindParam(":movies_id", $id);
+        $stmt->bindParam(":users_id", $userId);
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
     public function getRatings($id)
     {
