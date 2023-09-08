@@ -55,7 +55,7 @@ $userData = $userDao->verifyToken(false);
                 <i class="fas fa-bars"></i>
             </button>
 
-            <form action="" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
+            <form action="<?= $BASE_URL ?>search.php" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
                 <div class="input-group"> <!-- Adicionando um elemento de grupo para melhor alinhamento -->
                     <input type="text" name="q" id="search" class="form-control" placeholder="Buscar filmes"
                         aria-label="Search">

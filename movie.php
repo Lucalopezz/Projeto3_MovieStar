@@ -41,8 +41,7 @@ if (!empty($userData)) {
         $userOwnsMovie = true;
     }
     //resgatar as reviews do filme
-    $alreadyReviewed = $reviewDAO->hasAlreadyReviewed($id, $userData->id);
-    
+    $alreadyReviewed = $reviewDAO->hasAlreadyReviewed($id, $userData->id);   
 }
 
 //resgatar as reviews do filme para comentário
@@ -68,7 +67,7 @@ $movieReviews = $reviewDAO->getMoviesReview($id);
                     <?= $movie->category ?>
                 </span>
                 <span class="pipe"></span>
-                <span><i class="fas fa-star"></i>9</span>
+                <span><i class="fas fa-star"></i><?= $movie->rating ?></span>
 
             </p>
             <?php if ($movie->trailer == ""): ?>

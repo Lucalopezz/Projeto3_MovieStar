@@ -16,7 +16,7 @@ if ($review->user->image == "") {
             <div class="profile-image-container review-image" style="background-image: url('<?=$BASE_URL?>img/users/<?=$review->user->image?>')"></div>
         </div>
         <div class="col-md-9">
-            <h4 class="author-name"><a href=""><?=$fullName?></a></h4>
+            <h4 class="author-name"><a href="<?=$BASE_URL?>profile.php?id=<?=$review->user->id?>"><?=$fullName?></a></h4>
             <p><i class="fas fa-star"></i><?= $review->rating?></p>
         </div>
         <div class="col-md-12">
