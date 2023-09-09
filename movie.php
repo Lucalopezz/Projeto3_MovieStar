@@ -72,7 +72,7 @@ $movieReviews = $reviewDAO->getMoviesReview($id);
             </p>
             <?php if ($movie->trailer == ""): ?>
 
-                <img src="<?= $BASE_URL ?>img/movies/movie_cover.jpg" style="height: 315px ; width: 560px ;">
+                <img src="<?= $BASE_URL ?>img/movies/movie_cover.jpg" class="movie-without-image">
                 <!--<iframe src="https://www.youtube.com/embed/jZYhCcvZYmc?si=bw0Lybo-g0Xms_tZ" width="560" height="315" ></iframe> -->
                 <p>
                     <?= $movie->description ?>
@@ -92,7 +92,8 @@ $movieReviews = $reviewDAO->getMoviesReview($id);
         </div>
         <div class="col-md-4" id="image-movie">
             <div class="movie-image-container"
-                style="background-image: url(<?= $BASE_URL ?>img/movies/<?= $movie->image ?>);"></div>
+                style="background-image: url(<?= $BASE_URL ?>img/movies/<?= $movie->image ?>);">
+            </div>
         </div>
         <div class="offset-md-1 col-md-10" id="reviews-container">
             <h3 id="reviews-title">Avaliações</h3>

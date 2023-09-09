@@ -326,7 +326,7 @@
   margin: 0 auto;
   padding-top: 7px;
 }
-/* ========================= Movie =================== */
+/* ========================= Movieee =================== */
 .movie-container {
   text-align: center;
 }
@@ -388,6 +388,9 @@
 .trailer-container .movie-image-container {
   width: 560px;
   height: 315px;
+}
+.movie-container .movie-without-image{
+  height: 19.688rem ; width: 35rem ;
 }
 
 /*========================== Dashboard =============================== */
@@ -577,6 +580,13 @@
   /*================================== Movie ==================================*/
   .review {
     padding: 0 15px;
+  }
+  .movie-container .movie-without-image {
+    height: 15rem ; width: 23rem ;
+
+  }
+  #image-movie .movie-image-container {
+    height: 30rem;
   }
 
   /*================================== Dashboard ==================================*/

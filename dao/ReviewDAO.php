@@ -110,6 +110,8 @@ class ReviewDAO implements ReviewDAOInterface
           }
   
           $rating = $rating / count($reviews);
+          $rating = number_format($rating, 1);
+          
   
         } else {
   
